@@ -1,5 +1,6 @@
 package com.murach.winr;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -25,6 +26,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private WineAdapter mAdapter;
@@ -39,12 +48,15 @@ public class MainActivity extends AppCompatActivity
         WineDBHelper dbHelper = new WineDBHelper(this);
         mDatabase = dbHelper.getWritableDatabase();
 
+        //parse the xml file
+        parseXML();
+
         //setup the recyclerView
         RecyclerView recyclerView = findViewById(R.id.red_wine_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //set the adapter
-        mAdapter = new WineAdapter(this, getAllItems());
+        mAdapter = new WineAdapter(this, getSomeItems());
         recyclerView.setAdapter(mAdapter);
 
         /*-----------------------------BOILERPLATE CODE-------------------------------*/
@@ -76,10 +88,13 @@ public class MainActivity extends AppCompatActivity
                 null,
                 null,
                 null,
-                WineContract.WineEntry.COLUMN_TIMESTAMP + " DESC"
+                WineContract.WineEntry.COLUMN_DATE + " DESC"
         );
     }
 
+    private Cursor getSomeItems() {
+        return mDatabase.rawQuery("SELECT * FROM " + WineContract.WineEntry.TABLE_NAME, null);
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -139,4 +154,80 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void parseXML() {
+        //declare instance of XmlPullParserFactory class
+        XmlPullParserFactory parserFactory;
+
+        //try/catch block to catch exceptions
+        try {
+            //instantiate instance of XmlPullParserFactory class
+            parserFactory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = parserFactory.newPullParser();
+
+            //get the input stream of xml file from the assests folder
+            InputStream is = getAssets().open("tideData.xml");
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, null);
+
+            //take parser object and process into array of java objects
+            processParsing(parser);
+        } catch (XmlPullParserException e) {
+
+        } catch (IOException e) {
+        }
+    }
+
+    private void processParsing(XmlPullParser parser) throws IOException, XmlPullParserException {
+        int eventType = parser.getEventType();
+        //holder for values to be put in database
+        ContentValues cv = null;
+
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            //placeholder for tide data fields
+            String eltName = null;
+
+            switch (eventType) {
+                //switch case to determine which xml tag the loop is at
+                case XmlPullParser.START_TAG:
+                    eltName = parser.getName();
+
+                    //if else to determine which tag and add data to current java object
+                    if ("item".equals(eltName)) {
+                        cv = new ContentValues();
+                    } else if (cv != null) {
+                        if ("date".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_DATE, parser.nextText());
+                        } else if ("day".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_DAY, parser.nextText());
+                        } else if ("time".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_TIME, parser.nextText());
+                        } else if ("pred_in_ft".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_PREDFT, parser.nextText());
+                        } else if ("pred_in_cm".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_PREDCM, parser.nextText());
+                        } else if ("highlow".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_HIGHLOW, parser.nextText());
+                        }
+                        mDatabase.insert(WineContract.WineEntry.TABLE_NAME, null, cv);
+                    }
+                    break;
+            }
+            eventType = parser.next();
+        }
+    }
+
+    /*//test function for printing data from xml
+    private void printDays(ArrayList<Day> days) {
+        StringBuilder builder = new StringBuilder();
+
+        for (Day day : days) {
+            builder.append(day.date).append("\n").
+                    append(day.day).append("\n").
+                    append(day.time).append("\n").
+                    append(day.ft).append("\n").
+                    append(day.cm).append("\n").
+                    append(day.highlow).append("\n\n");
+        }
+        //txt.setText(builder.toString());
+    }*/
 }

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.murach.winr.WineContract.*;
 
 public class WineDBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "wineList.db";
+    public static final String DATABASE_NAME = "tide_data.db";
     public static final int DATABASE_VERSION = 1;
     public WineDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -17,9 +17,12 @@ public class WineDBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_WINELIST_TABLE = "CREATE TABLE " +
                 WineEntry.TABLE_NAME + " (" +
                         WineEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        WineEntry.COLUMN_NAME + " TEXT NOT NULL, " +
-                        WineEntry.COLUMN_AMOUNT + " INTEGER NOT NULL, " +
-                        WineEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                        WineEntry.COLUMN_DATE + " TEXT NOT NULL, " +
+                        WineEntry.COLUMN_DAY + " TEXT NOT NULL, " +
+                        WineEntry.COLUMN_TIME + " TEXT NOT NULL, " +
+                        WineEntry.COLUMN_PREDFT + " TEXT NOT NULL, " +
+                        WineEntry.COLUMN_PREDCM + " TEXT NOT NULL, " +
+                        WineEntry.COLUMN_HIGHLOW + " TEXT NOT NULL" +
                         ");";
         db.execSQL(SQL_CREATE_WINELIST_TABLE);
     }

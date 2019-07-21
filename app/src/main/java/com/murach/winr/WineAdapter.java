@@ -39,9 +39,13 @@ public class WineAdapter extends RecyclerView.Adapter<WineAdapter.WineViewHolder
         if (!mCursor.moveToPosition(position)) {
             return;
         }
-        String name = mCursor.getString(mCursor.getColumnIndex(WineContract.WineEntry.COLUMN_NAME));
+        String date = mCursor.getString(mCursor.getColumnIndex(WineContract.WineEntry.COLUMN_DATE));
+        String day = mCursor.getString(mCursor.getColumnIndex(WineContract.WineEntry.COLUMN_DAY));
+        String time = mCursor.getString(mCursor.getColumnIndex(WineContract.WineEntry.COLUMN_TIME));
+        String height = mCursor.getString(mCursor.getColumnIndex(WineContract.WineEntry.COLUMN_PREDFT));
+        String out = date + " " + day + " " + time + " " + height + "ft";
 
-        holder.redWineTextView.setText(name);
+        holder.redWineTextView.setText(out);
     }
 
     @Override
