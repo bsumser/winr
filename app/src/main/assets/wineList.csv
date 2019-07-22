@@ -1,0 +1,14 @@
+Color,Year,Varietal,Winery,Region,Country,Price
+White,2015,Riesling,North by Northwest,Washington,USA,8
+White,2017,Pinot Grigio,Principato,,Italy,8
+White,2015,Chardonnay,Napa Cellars,Napa Valley,USA,9
+White,2015,Cabernet Franc/Merlot,Calvet,Bordeaux,France,11
+Red,2016,Pinot Noir,Benton Lane,Willamette Valley,USA,12
+Red,2016,Sangiovese,Villa Travignoli,Chianti Classico DOCG,Italy,9
+Red,2015,Merlot,Callaway,California,USA,8
+Red,2015,Cabernet Sauvignon,Merf,Columbia Valley,USA,11
+Red,2015,Cabernet Sauvignon,Conn Creek,Napa Valley,USA,16
+Red,2016,Tempranillo,La Vendimia,Rioja,Spain,11.50
+Red,2017,Barbera,Paolina,Barber d'Alba DOC,Italy,11
+Red,2013,Syrah/Mourvedre,3 Horse Ranch,Idaho,USA,11.50
+Red,2015,Portuguese Red Blend,Quinta do Vale Meao,Douro,Portugal,10

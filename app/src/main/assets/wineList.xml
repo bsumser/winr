@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row>
+    <Color>White</Color>
+    <Year>2015</Year>
+    <Varietal>Riesling</Varietal>
+    <Winery>North by Northwest</Winery>
+    <Region>Washington</Region>
+    <Country>USA</Country>
+    <Price>8</Price>
+  </row>
+  <row>
+    <Color>White</Color>
+    <Year>2017</Year>
+    <Varietal>Pinot Grigio</Varietal>
+    <Winery>Principato</Winery>
+    <Region></Region>
+    <Country>Italy</Country>
+    <Price>8</Price>
+  </row>
+  <row>
+    <Color>White</Color>
+    <Year>2015</Year>
+    <Varietal>Chardonnay</Varietal>
+    <Winery>Napa Cellars</Winery>
+    <Region>Napa Valley</Region>
+    <Country>USA</Country>
+    <Price>9</Price>
+  </row>
+  <row>
+    <Color>White</Color>
+    <Year>2015</Year>
+    <Varietal>Cabernet Franc/Merlot</Varietal>
+    <Winery>Calvet</Winery>
+    <Region>Bordeaux</Region>
+    <Country>France</Country>
+    <Price>11</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2016</Year>
+    <Varietal>Pinot Noir</Varietal>
+    <Winery>Benton Lane</Winery>
+    <Region>Willamette Valley</Region>
+    <Country>USA</Country>
+    <Price>12</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2016</Year>
+    <Varietal>Sangiovese</Varietal>
+    <Winery>Villa Travignoli</Winery>
+    <Region>Chianti Classico DOCG</Region>
+    <Country>Italy</Country>
+    <Price>9</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2015</Year>
+    <Varietal>Merlot</Varietal>
+    <Winery>Callaway</Winery>
+    <Region>California</Region>
+    <Country>USA</Country>
+    <Price>8</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2015</Year>
+    <Varietal>Cabernet Sauvignon</Varietal>
+    <Winery>Merf</Winery>
+    <Region>Columbia Valley</Region>
+    <Country>USA</Country>
+    <Price>11</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2015</Year>
+    <Varietal>Cabernet Sauvignon</Varietal>
+    <Winery>Conn Creek</Winery>
+    <Region>Napa Valley</Region>
+    <Country>USA</Country>
+    <Price>16</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2016</Year>
+    <Varietal>Tempranillo</Varietal>
+    <Winery>La Vendimia</Winery>
+    <Region>Rioja</Region>
+    <Country>Spain</Country>
+    <Price>11.50</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2017</Year>
+    <Varietal>Barbera</Varietal>
+    <Winery>Paolina</Winery>
+    <Region>Barber d&apos;Alba DOC</Region>
+    <Country>Italy</Country>
+    <Price>11</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2013</Year>
+    <Varietal>Syrah/Mourvedre</Varietal>
+    <Winery>3 Horse Ranch</Winery>
+    <Region>Idaho</Region>
+    <Country>USA</Country>
+    <Price>11.50</Price>
+  </row>
+  <row>
+    <Color>Red</Color>
+    <Year>2015</Year>
+    <Varietal>Portuguese Red Blend</Varietal>
+    <Winery>Quinta do Vale Meao</Winery>
+    <Region>Douro</Region>
+    <Country>Portugal</Country>
+    <Price>10</Price>
+  </row>
+</root>

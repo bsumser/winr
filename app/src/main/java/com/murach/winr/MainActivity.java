@@ -133,20 +133,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.red_wines) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new FragmentOne()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.white_wine) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new FragmentTwo()).commit();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.varietals) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new FragmentThree()).commit();
-        } else if (id == R.id.nav_tools) {
+        } else if (id == R.id.regions) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.countries) {
 
         }
 
@@ -165,7 +163,7 @@ public class MainActivity extends AppCompatActivity
             XmlPullParser parser = parserFactory.newPullParser();
 
             //get the input stream of xml file from the assests folder
-            InputStream is = getAssets().open("tideData.xml");
+            InputStream is = getAssets().open("tide_data.xml");
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(is, null);
 
