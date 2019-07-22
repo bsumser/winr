@@ -8,9 +8,18 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/red_wine_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="617dp"
-        android:layout_alignTop="@+id/red_wine_text_view" />
+    <ListView
+        android:id="@+id/wine_list_view"
+        android:layout_width="395dp"
+        android:layout_height="659dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

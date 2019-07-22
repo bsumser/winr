@@ -1,6 +1,7 @@
 package com.murach.winr;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.widget.ListView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -33,6 +35,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,16 +51,7 @@ public class MainActivity extends AppCompatActivity
         WineDBHelper dbHelper = new WineDBHelper(this);
         mDatabase = dbHelper.getWritableDatabase();
 
-        //parse the xml file
-        parseXML();
-
-        //setup the recyclerView
-        RecyclerView recyclerView = findViewById(R.id.red_wine_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //set the adapter
-        mAdapter = new WineAdapter(this, getSomeItems());
-        recyclerView.setAdapter(mAdapter);
+        //parseXML();
 
         /*-----------------------------BOILERPLATE CODE-------------------------------*/
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -66,8 +60,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                parseXML();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity
                 null,
                 null,
                 null,
-                WineContract.WineEntry.COLUMN_DATE + " DESC"
+                WineContract.WineEntry.COLUMN_PRICE + " DESC"
         );
     }
 
@@ -134,8 +127,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.red_wines) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new FragmentOne()).commit();
+            Intent intent = new Intent(MainActivity.this, RedActivity.class);
+            startActivity(intent);
         } else if (id == R.id.white_wine) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new FragmentTwo()).commit();
@@ -163,7 +156,7 @@ public class MainActivity extends AppCompatActivity
             XmlPullParser parser = parserFactory.newPullParser();
 
             //get the input stream of xml file from the assests folder
-            InputStream is = getAssets().open("tide_data.xml");
+            InputStream is = getAssets().open("wineList.xml");
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(is, null);
 
@@ -190,21 +183,23 @@ public class MainActivity extends AppCompatActivity
                     eltName = parser.getName();
 
                     //if else to determine which tag and add data to current java object
-                    if ("item".equals(eltName)) {
+                    if ("row".equals(eltName)) {
                         cv = new ContentValues();
                     } else if (cv != null) {
-                        if ("date".equals(eltName)) {
-                            cv.put(WineContract.WineEntry.COLUMN_DATE, parser.nextText());
-                        } else if ("day".equals(eltName)) {
-                            cv.put(WineContract.WineEntry.COLUMN_DAY, parser.nextText());
-                        } else if ("time".equals(eltName)) {
-                            cv.put(WineContract.WineEntry.COLUMN_TIME, parser.nextText());
-                        } else if ("pred_in_ft".equals(eltName)) {
-                            cv.put(WineContract.WineEntry.COLUMN_PREDFT, parser.nextText());
-                        } else if ("pred_in_cm".equals(eltName)) {
-                            cv.put(WineContract.WineEntry.COLUMN_PREDCM, parser.nextText());
-                        } else if ("highlow".equals(eltName)) {
-                            cv.put(WineContract.WineEntry.COLUMN_HIGHLOW, parser.nextText());
+                        if ("Color".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_COLOR, parser.nextText());
+                        } else if ("Year".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_YEAR, parser.nextText());
+                        } else if ("Varietal".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_VARIETAL, parser.nextText());
+                        } else if ("Winery".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_WINERY, parser.nextText());
+                        } else if ("Region".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_REGION, parser.nextText());
+                        } else if ("Country".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_COUNTRY, parser.nextText());
+                        } else if ("Price".equals(eltName)) {
+                            cv.put(WineContract.WineEntry.COLUMN_PRICE, parser.nextText());
                         }
                         mDatabase.insert(WineContract.WineEntry.TABLE_NAME, null, cv);
                     }

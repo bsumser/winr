@@ -5,7 +5,7 @@
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/red_wine_recycler_view_text_view"
+        android:id="@+id/wine_list_view_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
