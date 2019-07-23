@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private WineAdapter mAdapter;
     private SQLiteDatabase mDatabase;
     private Parser mParser;
 

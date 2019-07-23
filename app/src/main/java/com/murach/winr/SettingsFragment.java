@@ -2,7 +2,6 @@ package com.murach.winr;
 
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceFragmentCompat;
 
