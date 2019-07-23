@@ -18,13 +18,13 @@ public class WineDBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_TIDE_TABLE = "CREATE TABLE " +
                 WineEntry.TABLE_NAME + " (" +
                 WineEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                WineEntry.COLUMN_COLOR + " TEXT, " +
-                WineEntry.COLUMN_YEAR + " TEXT, " +
-                WineEntry.COLUMN_VARIETAL + " TEXT, " +
-                WineEntry.COLUMN_WINERY + " TEXT, " +
-                WineEntry.COLUMN_REGION + " TEXT, " +
-                WineEntry.COLUMN_COUNTRY + " TEXT, " +
-                WineEntry.COLUMN_PRICE + " TEXT" +
+                WineEntry.COLUMN_COLOR + " TEXT NOT NULL, " +
+                WineEntry.COLUMN_YEAR + " TEXT NOT NULL, " +
+                WineEntry.COLUMN_VARIETAL + " TEXT NOT NULL, " +
+                WineEntry.COLUMN_WINERY + " TEXT NOT NULL, " +
+                WineEntry.COLUMN_REGION + " TEXT NOT NULL, " +
+                WineEntry.COLUMN_COUNTRY + " TEXT NOT NULL, " +
+                WineEntry.COLUMN_PRICE + " TEXT NOT NULL" +
                 ");";
         db.execSQL(SQL_CREATE_TIDE_TABLE);
     }
