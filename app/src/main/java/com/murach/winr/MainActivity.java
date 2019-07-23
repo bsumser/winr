@@ -1,6 +1,7 @@
 package com.murach.winr;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,6 +14,8 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
+
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -21,12 +24,14 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private SQLiteDatabase mDatabase;
     private Parser mParser;
-    private int fontSize;
+    private Boolean sort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //initiate the database
         WineDBHelper dbHelper = new WineDBHelper(this);
@@ -54,6 +59,11 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         /*-----------------------------END BOILERPLATE CODE-------------------------------*/
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sort = sharedPreferences.getBoolean("switch_preference_1", true);
     }
 
     @Override
@@ -100,12 +110,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //load preferences
+        setupSharedPreferences();
+
+        Bundle priceSort = new Bundle();
+        priceSort.putBoolean("PRICE_SORT", sort);
+
         //launch different activities based on user click in navagation drawer
         if (id == R.id.red_wines) {
             Intent intent = new Intent(MainActivity.this, RedActivity.class);
+            intent.putExtras(priceSort);
             startActivity(intent);
         } else if (id == R.id.white_wine) {
             Intent intent = new Intent(MainActivity.this, WhiteActivity.class);
+            intent.putExtras(priceSort);
             startActivity(intent);
         } else if (id == R.id.varietals) {
             Intent intent = new Intent(MainActivity.this, VarietalActivity.class);
@@ -113,7 +131,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.regions) {
             Intent intent = new Intent(MainActivity.this, RegionActivity.class);
             startActivity(intent);
-        } else if (id == R.id.countries) {
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

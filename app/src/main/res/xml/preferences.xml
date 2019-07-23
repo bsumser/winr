@@ -4,6 +4,6 @@
     <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="switch_preference_1"
-        android:summary="Turn this option on or off"
-        android:title="Settings Option" />
+        android:summary="Order by price? (ascending)"
+        android:title="Pricing Option" />
 </PreferenceScreen>

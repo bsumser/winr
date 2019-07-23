@@ -24,7 +24,7 @@ public class WineDBHelper extends SQLiteOpenHelper {
                 WineEntry.COLUMN_WINERY + " TEXT NOT NULL, " +
                 WineEntry.COLUMN_REGION + " TEXT NOT NULL, " +
                 WineEntry.COLUMN_COUNTRY + " TEXT NOT NULL, " +
-                WineEntry.COLUMN_PRICE + " TEXT NOT NULL" +
+                WineEntry.COLUMN_PRICE + " REAL NOT NULL" +
                 ");";
         db.execSQL(SQL_CREATE_TIDE_TABLE);
     }

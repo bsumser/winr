@@ -27,7 +27,8 @@ public class WineAdapter extends CursorAdapter {
         String year = cursor.getString(cursor.getColumnIndexOrThrow("Year"));
         String varietal = cursor.getString(cursor.getColumnIndexOrThrow("Varietal"));
         String region = cursor.getString(cursor.getColumnIndexOrThrow("Region"));
-        String output = winery + " " + year + " " + varietal + ", " + region;
+        String price = cursor.getString(cursor.getColumnIndexOrThrow("Price"));
+        String output = winery + " " + year + " " + varietal + ", " + region + " " + price;
         // Populate fields with extracted properties
         outputTextView.setText(output);
     }
