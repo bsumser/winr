@@ -6,6 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="menu_item_two">About</string>
+    <string name="app_descrip">This is the intitial version of the winr app.</string>
+    <string name="app_credits">Made by Brett Sumser</string>
 
     <string name="red_wine">Red Wines</string>
     <string name="white_wine">White Wines</string>

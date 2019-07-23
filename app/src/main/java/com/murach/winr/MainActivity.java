@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -114,7 +116,14 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //launch the settings activity
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
+        }
+        else if (id == R.id.menu_item_two) {
+            //launch the dialog fragment
+            showAbout();
         }
 
         return super.onOptionsItemSelected(item);
@@ -130,13 +139,14 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, RedActivity.class);
             startActivity(intent);
         } else if (id == R.id.white_wine) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new FragmentTwo()).commit();
+            Intent intent = new Intent(MainActivity.this, WhiteActivity.class);
+            startActivity(intent);
         } else if (id == R.id.varietals) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new FragmentThree()).commit();
+            Intent intent = new Intent(MainActivity.this, VarietalActivity.class);
+            startActivity(intent);
         } else if (id == R.id.regions) {
-
+            Intent intent = new Intent(MainActivity.this, RegionActivity.class);
+            startActivity(intent);
         } else if (id == R.id.countries) {
 
         }
@@ -145,6 +155,27 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    protected void showAbout() {
+        // Inflate the about message contents
+        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
+
+        // When linking text, force to always use default color. This works
+        // around a pressed color state bug.
+        TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+        int defaultColor = textView.getTextColors().getDefaultColor();
+        textView.setTextColor(defaultColor);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //builder.setIcon(R.drawable.app_icon);
+        builder.setTitle(R.string.app_name);
+        builder.setView(messageView);
+        builder.create();
+        builder.show();
+    }
+
+
     private void parseXML() {
         //declare instance of XmlPullParserFactory class
         XmlPullParserFactory parserFactory;

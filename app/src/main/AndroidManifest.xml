@@ -19,7 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RedActivity"/>
+        <activity
+            android:name=".RedActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".WhiteActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".VarietalActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RegionActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

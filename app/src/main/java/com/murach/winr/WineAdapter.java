@@ -33,11 +33,11 @@ public class WineAdapter extends CursorAdapter {
         // Find fields to populate in inflated template
         TextView outputTextView = (TextView) view.findViewById(R.id.wine_list_view_text_view);
         // Extract properties from cursor
-        String color = cursor.getString(cursor.getColumnIndexOrThrow("Color"));
+        String winery = cursor.getString(cursor.getColumnIndexOrThrow("Winery"));
         String year = cursor.getString(cursor.getColumnIndexOrThrow("Year"));
         String varietal = cursor.getString(cursor.getColumnIndexOrThrow("Varietal"));
         String region = cursor.getString(cursor.getColumnIndexOrThrow("Region"));
-        String output = color + " " + year + " " + varietal + " " + region;
+        String output = winery + " " + year + " " + varietal + ", " + region;
         // Populate fields with extracted properties
         outputTextView.setText(output);
     }
