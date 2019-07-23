@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
 import android.view.Menu;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
+        WebView browser = (WebView) findViewById(R.id.web_view);
+        browser.loadUrl("http://www.ambrosiarestaurant.com/");
 
         //initiate the database
         WineDBHelper dbHelper = new WineDBHelper(this);

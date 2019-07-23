@@ -20,9 +20,5 @@
             android:id="@+id/regions"
             android:icon="@drawable/ic_map"
             android:title="@string/region" />
-        <item
-            android:id="@+id/countries"
-            android:icon="@drawable/ic_globe"
-            android:title="@string/country" />
     </group>
 </menu>
