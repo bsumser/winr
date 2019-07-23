@@ -28,7 +28,7 @@ public class Parser {
             parserFactory = XmlPullParserFactory.newInstance();
             XmlPullParser parser = parserFactory.newPullParser();
 
-            //get the input stream of xml file from the assests folder
+            //get the input stream of xml file from the assets folder
             InputStream is = parseContext.getAssets().open("wineList.xml");
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(is, null);

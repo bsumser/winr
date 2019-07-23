@@ -26,6 +26,13 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="391dp"
+            android:layout_height="93dp"
+            android:layout_gravity="bottom|left"
+            android:text="Press the Button to parse xml" />
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

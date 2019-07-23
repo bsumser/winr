@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private SQLiteDatabase mDatabase;
     private Parser mParser;
+    private int fontSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
